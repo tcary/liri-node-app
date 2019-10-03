@@ -10,6 +10,8 @@ var spotify = new Spotify(keys.spotify);
 var command = process.argv[2];
 var query = process.argv.slice(3).join(" ");
 var text = "random.txt";
+var log = "log.txt";
+var divide = "--------------------------------------------------------------------"
 
 
 // console.log(query);
@@ -48,11 +50,14 @@ function getBands(query) {
                 // console.log(dateArr);
 
                 var concertResults =
-                    "--------------------------------------------------------------------" +
+                    divide +
                     "\nVenue Name: " + response.data[i].venue.name +
                     "\nVenue Location: " + response.data[i].venue.city +
                     "\nDate of the Event: " + dateArr.format("MM-DD-YYYY"); //dateArr[0] should be the date separated from the time
                 console.log(concertResults);
+                fs.appendFileSync(log, "\nVenue Name: " + response.data[i].venue.name);
+                fs.appendFileSync(log, "\nVenue Location: " + response.data[i].venue.city);
+                fs.appendFileSync(log, "\nDate of the Event: " + dateArr.format("MM-DD-YYYY") + "\n" + divide);
             }
         })
         .catch(function (err) {
@@ -67,13 +72,18 @@ function getSong(query) {
     // console.log(query);
     spotify.search({ type: 'track', query: query })
         .then(function (response) {
-
+            "--------------------------------------------------------------------"
             // console.log(response.tracks.items[0]);
             var items = response.tracks.items[0];
-            console.log(items.album.artists[0].name);
-            console.log(items.name);
-            console.log(items.album.name);
-            console.log(items.preview_url);
+            console.log("Artist name: " + items.album.artists[0].name);
+            fs.appendFileSync(log, "Artist name: " + items.album.artists[0].name + "\n");
+            console.log("Song name: " + items.name);
+            fs.appendFileSync(log, "Song name: " + items.name + "\n");
+            console.log("Album: " + items.album.name);
+            fs.appendFileSync(log, "Album: " + items.album.name + "\n");
+            console.log("Preview link: " + items.preview_url);
+            fs.appendFileSync(log, "Preview link: " + items.preview_url + "\n" + divide);
+            "--------------------------------------------------------------------"
 
         })
         .catch(function (err) {
@@ -89,7 +99,7 @@ function getMovie(query) {
             //console.log(response.data)
 
             var movieResults =
-                "--------------------------------------------------------------------" +
+                divide +
                 "\nMovie Title: " + response.data.Title +
                 "\nRelease Year: " + response.data.Year +
                 "\nIMDB Rating: " + response.data.imdbRating +
@@ -99,6 +109,15 @@ function getMovie(query) {
                 "\nMovie Plot: " + response.data.Plot +
                 "\nActors: " + response.data.Actors
             console.log(movieResults);
+            fs.appendFileSync(log, "\nMovie Title: " + response.data.Title);
+            fs.appendFileSync(log, "\nRelease Year: " + response.data.Year);
+            fs.appendFileSync(log, "\nIMDB Rating: " + response.data.imdbRating);
+            fs.appendFileSync(log, "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+            fs.appendFileSync(log, "\nCountry Production: " + response.data.Country);
+            fs.appendFileSync(log, "\nLanguage: " + response.data.Language);
+            fs.appendFileSync(log, "\nMovie Plot: " + response.data.Plot);
+            fs.appendFileSync(log, "\nActors: " + response.data.Actors + "\n" + divide)
+
         })
         .catch(function (err) {
             console.log(err);

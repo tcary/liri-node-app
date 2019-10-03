@@ -13,4 +13,18 @@ Try it so liri.js can take in one of the following commands:
 * movie-this
 * do-what-it-says
 
-![screenshot of app]('assets/Screen Shot 2019-10-03 at 9.40.20 AM.png')
+
+HERE is an example of concert-this command.
+![screenshot of concert-this](assets/concert-this.png)
+
+HERE is an example of do-what-it-says command.
+![screenshot of do-what-it-says](assets/do-what-it-says.png)
+
+HERE is an example of movie-this command.
+![screenshot of movie-this command](assets/movie_this.png)
+
+HERE is an example of spotify-default command.
+![screenshot of spotify-default](assets/spotify-default.png)
+
+HERE is an example of spotify-this-song command.
+![screenshot of spotify-this-song](assets/spotify-this-song.png)

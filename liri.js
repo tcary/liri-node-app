@@ -63,11 +63,12 @@ function getBands(query) {
 function getSong(query) {
     if (!query) {
         query = "The Sign by Ace of Base"; // default song
-    } console.log(query);
+    }
+    // console.log(query);
     spotify.search({ type: 'track', query: query })
         .then(function (response) {
 
-            console.log(response.tracks.items[0]);
+            // console.log(response.tracks.items[0]);
             var items = response.tracks.items[0];
             console.log(items.album.artists[0].name);
             console.log(items.name);
